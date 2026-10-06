@@ -1,0 +1,11 @@
+name: Suggest a feature
+description: Share an idea that would improve CodeVault.
+title: "[Feature] "
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like CodeVault to add or improve?
+      placeholder: Describe your idea here.
+    validations:
+      required: true

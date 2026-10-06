@@ -1,0 +1,4 @@
+{
+  "routeTreeFile": "./src/routeTree.gen.js",
+  "generatedExt": ".js"
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 148 118">
+  <title>Codeforces</title>
+  <defs>
+    <linearGradient id="cf-yellow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f6c43d" />
+      <stop offset="1" stop-color="#fcd975" />
+    </linearGradient>
+    <linearGradient id="cf-blue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1480c4" />
+      <stop offset="1" stop-color="#1c99d4" />
+    </linearGradient>
+    <linearGradient id="cf-red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b11e26" />
+      <stop offset="1" stop-color="#c21c24" />
+    </linearGradient>
+  </defs>
+  <path
+    fill="url(#cf-yellow)"
+    d="M30.3 32.7H9c-5 0-9 4.1-9 9v64.7c0 5 4.1 9 9 9h21.3c5 0 9-4.1 9-9V41.7c.1-5-4-9-9-9Z"
+  />
+  <path
+    fill="url(#cf-blue)"
+    d="M84.6 0H63.3c-5 0-9 4.1-9 9v97.4c0 5 4.1 9 9 9h21.3c5 0 9-4.1 9-9V9c0-4.9-4-9-9-9Z"
+  />
+  <path
+    fill="url(#cf-red)"
+    d="M138.7 45.1h-21.3c-5 0-9 4.1-9 9v52.3c0 5 4.1 9 9 9h21.3c5 0 9-4.1 9-9V54.1c.3-5-4-9-9-9Z"
+  />
+</svg>

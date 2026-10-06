@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CodeVault</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <svg class="icon-defs" aria-hidden="true">
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path
+          d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"
+        />
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24">
+        <path d="M15 3h6v6" />
+        <path d="M10 14 21 3" />
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      </symbol>
+      <symbol id="icon-logout" viewBox="0 0 24 24">
+        <path d="m10 17 5-5-5-5" />
+        <path d="M15 12H3" />
+        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+      </symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24">
+        <path
+          d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"
+        />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="icon-bug" viewBox="0 0 24 24">
+        <path d="m8 2 1.88 1.88" />
+        <path d="M14.12 3.88 16 2" />
+        <path d="M9 7.13v-1a3 3 0 1 1 6 0v1" />
+        <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6Z" />
+        <path d="M12 20v-9" />
+        <path d="M6.5 9H3" />
+        <path d="M6 13H2" />
+        <path d="M17.5 9H21" />
+        <path d="M18 13h4" />
+      </symbol>
+      <symbol id="icon-lightbulb" viewBox="0 0 24 24">
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path
+          d="M15.09 14c.18-.72.66-1.24 1.17-1.75A6 6 0 1 0 7.74 12.25c.48.48.97 1.02 1.17 1.75"
+        />
+      </symbol>
+      <symbol id="icon-chevron" viewBox="0 0 24 24">
+        <path d="m9 18 6-6-6-6" />
+      </symbol>
+    </svg>
+
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark-frame">
+            <img class="brand-mark" src="icon.png" alt="" />
+          </span>
+          <span class="brand-name">CodeVault</span>
+        </div>
+
+        <div class="header-actions">
+          <div class="connection-status" title="Extension status">
+            <span id="statusDot" class="status-dot"></span>
+            <span id="statusText" class="status-text">Checking</span>
+          </div>
+          <button
+            id="starRepo"
+            type="button"
+            class="header-star icon-button"
+            aria-label="Star CodeVault on GitHub"
+            aria-pressed="false"
+            title="Star CodeVault"
+          >
+            <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <div id="banner" class="banner hidden" role="alert">
+        <span class="banner-icon" aria-hidden="true">!</span>
+        <div class="banner-content">
+          <strong id="bannerTitle">Session expired</strong>
+          <p id="bannerText">Sign in to your platform to continue syncing.</p>
+          <a id="bannerLink" href="#" target="_blank" rel="noreferrer">Reconnect account</a>
+        </div>
+      </div>
+
+      <main class="app-main">
+        <section id="setup" class="panel setup-panel hidden">
+          <div class="section-heading">
+            <div>
+              <h1>Settings</h1>
+              <p>Configure repository and optional platform accounts.</p>
+            </div>
+            <button id="cancelEdit" type="button" class="text-button cancel-btn hidden">
+              Cancel
+            </button>
+          </div>
+
+          <p id="setupError" class="error-banner hidden" role="alert"></p>
+
+          <div class="setup-card github-setup-card">
+            <div class="github-card-top">
+              <span class="setup-icon-frame">
+                <img src="icons/github.svg" alt="" />
+              </span>
+              <div class="github-card-info">
+                <h2>GitHub repository</h2>
+                <span id="githubStatus" class="github-status not-connected">Not connected</span>
+              </div>
+              <button id="githubConnect" type="button" class="btn btn-connect">
+                Connect GitHub
+              </button>
+            </div>
+
+            <div class="form-group repo-group">
+              <label for="repo">Repository name</label>
+              <input
+                id="repo"
+                value="CP-Solutions"
+                placeholder="CP-Solutions"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <label class="repo-disclosure" for="repoPublicConsent">
+              <input id="repoPublicConsent" type="checkbox" />
+              <span>
+                Create this as a public GitHub repository if it does not exist. Accepted solutions
+                committed there will be publicly visible.
+              </span>
+            </label>
+          </div>
+
+          <div class="setup-card">
+            <h2>Platform accounts</h2>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="handle">Codeforces handle</label>
+                <input id="handle" placeholder="tourist" autocomplete="off" spellcheck="false" />
+              </div>
+
+              <div class="form-group">
+                <label for="codechefHandle">CodeChef username</label>
+                <input
+                  id="codechefHandle"
+                  placeholder="username"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+
+              <div class="form-group form-group-wide">
+                <label for="gfgHandle">GeeksforGeeks username</label>
+                <input
+                  id="gfgHandle"
+                  placeholder="username"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="setup-card platform-fieldset">
+            <legend>Active platforms</legend>
+            <div class="platforms-grid">
+              <label class="platform-toggle">
+                <input id="platformCF" type="checkbox" />
+                <span class="platform-control">
+                  <span class="platform-ctrl-left">
+                    <img src="icons/codeforces.svg" alt="" />
+                    <span>Codeforces</span>
+                  </span>
+                  <span class="toggle-check">✓</span>
+                </span>
+              </label>
+              <label class="platform-toggle">
+                <input id="platformLC" type="checkbox" checked />
+                <span class="platform-control">
+                  <span class="platform-ctrl-left">
+                    <img src="icons/leetcode.png" alt="" />
+                    <span>LeetCode</span>
+                  </span>
+                  <span class="toggle-check">✓</span>
+                </span>
+              </label>
+              <label class="platform-toggle">
+                <input id="platformCSES" type="checkbox" checked />
+                <span class="platform-control">
+                  <span class="platform-ctrl-left">
+                    <img src="icons/cses.svg" alt="" />
+                    <span>CSES</span>
+                  </span>
+                  <span class="toggle-check">✓</span>
+                </span>
+              </label>
+              <label class="platform-toggle">
+                <input id="platformCodeChef" type="checkbox" />
+                <span class="platform-control">
+                  <span class="platform-ctrl-left">
+                    <img src="icons/codechef.svg" alt="" />
+                    <span>CodeChef</span>
+                  </span>
+                  <span class="toggle-check">✓</span>
+                </span>
+              </label>
+              <label class="platform-toggle platform-toggle-wide">
+                <input id="platformGFG" type="checkbox" />
+                <span class="platform-control">
+                  <span class="platform-ctrl-left">
+                    <img src="icons/geeksforgeeks.svg" alt="" />
+                    <span>GeeksforGeeks</span>
+                  </span>
+                  <span class="toggle-check">✓</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="setup-actions">
+            <button id="save" class="btn btn-primary btn-save">Verify &amp; Save</button>
+            <button id="reset" class="text-button danger-text">Reset extension data</button>
+          </div>
+        </section>
+
+        <section id="status" class="panel status-panel hidden">
+          <div class="github-account-row">
+            <a
+              id="repoLink"
+              class="repo-link"
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+              title="Open repository on GitHub"
+            >
+              <span class="repo-icon-wrap">
+                <img src="icons/github.svg" alt="" />
+              </span>
+              <div class="repo-meta">
+                <span class="repo-label">Target repository</span>
+                <span id="repoLine" class="repo-name"></span>
+              </div>
+              <svg class="repo-open" aria-hidden="true"><use href="#icon-external"></use></svg>
+            </a>
+            <div class="repo-footer">
+              <span class="repo-status-indicator">
+                <span class="status-pip"></span>
+                <span>Active repository</span>
+              </span>
+              <button id="disconnectGithub" class="btn-disconnect-link" type="button">
+                <svg aria-hidden="true"><use href="#icon-logout"></use></svg>
+                <span>Disconnect</span>
+              </button>
+            </div>
+          </div>
+
+          <section class="platform-summary" aria-labelledby="activePlatformsTitle">
+            <h2 id="activePlatformsTitle">Active platforms</h2>
+            <div class="active-platforms-row" id="activeBadges"></div>
+          </section>
+
+          <button id="edit" class="settings-row">
+            <span class="action-icon settings-action-icon">
+              <svg aria-hidden="true"><use href="#icon-settings"></use></svg>
+            </span>
+            <strong>Settings</strong>
+            <svg class="action-arrow" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+          </button>
+
+          <div class="feedback-actions">
+            <a
+              href="https://github.com/TushalLohar/CodeVault/issues/new?template=bug_report.yml"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="action-icon">
+                <svg aria-hidden="true"><use href="#icon-bug"></use></svg>
+              </span>
+              <strong>Report a bug</strong>
+            </a>
+            <a
+              href="https://github.com/TushalLohar/CodeVault/issues/new?template=feature_request.yml"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="action-icon">
+                <svg aria-hidden="true"><use href="#icon-lightbulb"></use></svg>
+              </span>
+              <strong>Suggest a feature</strong>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <p>
+          Built by
+          <a href="https://github.com/TushalLohar" target="_blank" rel="noreferrer">Tushal Lohar</a>
+        </p>
+        <nav aria-label="Author links">
+          <a
+            class="social-link"
+            href="https://x.com/LoharTushal"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Tushal Lohar on X"
+            title="X"
+          >
+            <img src="icons/x.svg" alt="" />
+          </a>
+          <a
+            class="social-link"
+            href="https://github.com/TushalLohar"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Tushal Lohar on GitHub"
+            title="GitHub"
+          >
+            <img src="icons/github.svg" alt="" />
+          </a>
+          <a
+            class="social-link"
+            href="https://www.linkedin.com/in/tushal-lohar/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Tushal Lohar on LinkedIn"
+            title="LinkedIn"
+          >
+            <img src="icons/linkedin.svg" alt="" />
+          </a>
+        </nav>
+      </footer>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

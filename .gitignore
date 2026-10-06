@@ -1,0 +1,136 @@
+# Dependencies & Package Managers
+node_modules/
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.npm/
+jspm_packages/
+
+# Environment Variables & Local Configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+.envrc
+.direnv/
+.npmrc
+.yarnrc
+
+# Credentials, Keys & Certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.cer
+*.crt
+*.der
+credentials*.json
+client_secret*.json
+service-account*.json
+*.local.json
+secrets/
+*.publishsettings
+
+# Build & Bundler Output
+dist/
+dist-ssr/
+build/
+out/
+.output/
+.vercel/
+.netlify/
+.turbo/
+.tanstack/
+.vite/
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+*.map
+
+# Test, Coverage & Reports
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+playwright/.cache/
+blob-report/
+cypress/videos/
+cypress/screenshots/
+.jest/
+
+# Logs & Diagnostics
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime Data & Embedded Databases
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.db-journal
+dump.rdb
+
+# Editor, IDE & Local AI Tool State
+.vscode/
+.idea/
+.fleet/
+.codex/
+.agents/
+.gemini/
+.claude/
+.cursor/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.*.sw[a-p]
+*.un~
+Session.vim
+.netrwhist
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Thumbs.db:encryptable
+Desktop.ini
+$RECYCLE.BIN/
+
+# Temporary Files & Backups
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+
+# Packaged Browser Extensions & Archives
+*.zip
+*.crx
+*.xpi
+*.tgz
+*.tar.gz
+*.rar
+*.7z
+
+# Project-specific exception: deployed website download asset

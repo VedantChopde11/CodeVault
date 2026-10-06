@@ -1,0 +1,99 @@
+{
+  "manifest_version": 3,
+  "name": "CodeVault - Solves to GitHub",
+  "version": "1.0.0",
+  "minimum_chrome_version": "112",
+  "homepage_url": "https://codevault.dev/",
+  "description": "Automatically syncs accepted Codeforces, LeetCode, CSES, CodeChef and GeeksforGeeks solutions to GitHub.",
+  "permissions": ["storage", "cookies", "scripting", "identity", "alarms", "notifications"],
+  "host_permissions": [
+    "https://codeforces.com/*",
+    "https://leetcode.com/*",
+    "https://cses.fi/*",
+    "https://*.codechef.com/*",
+    "https://codechef.com/*",
+    "https://*.geeksforgeeks.org/*",
+    "https://geeksforgeeks.org/*",
+    "https://api.github.com/*",
+    "http://localhost:3000/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CodeVault",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://codeforces.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["leetcode-main.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["content-leetcode.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://cses.fi/*"],
+      "js": ["content-cses.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://*.codechef.com/problems/*",
+        "https://*.codechef.com/submit/*",
+        "https://*.codechef.com/*/problems/*",
+        "https://*.codechef.com/*/submit/*",
+        "https://codechef.com/problems/*",
+        "https://codechef.com/submit/*",
+        "https://codechef.com/*/problems/*",
+        "https://codechef.com/*/submit/*"
+      ],
+      "js": ["codechef-main.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://*.codechef.com/problems/*",
+        "https://*.codechef.com/submit/*",
+        "https://*.codechef.com/*/problems/*",
+        "https://*.codechef.com/*/submit/*",
+        "https://codechef.com/problems/*",
+        "https://codechef.com/submit/*",
+        "https://codechef.com/*/problems/*",
+        "https://codechef.com/*/submit/*"
+      ],
+      "js": ["content-codechef.js"],
+      "world": "ISOLATED",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://*.geeksforgeeks.org/*", "https://geeksforgeeks.org/*"],
+      "js": ["content-gfg.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icon.png"
+  }
+}

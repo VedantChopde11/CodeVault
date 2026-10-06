@@ -1,0 +1,12 @@
+name: Report a bug
+description: Tell us what went wrong in CodeVault.
+title: "[Bug] "
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened?
+      description: Include the platform, what you expected, and what happened instead.
+      placeholder: Describe the problem here.
+    validations:
+      required: true
