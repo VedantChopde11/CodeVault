@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
   "functions": {
-    "api/**/*.ts": {
+    "api/**/*.js": {
       "maxDuration": 10,
       "includeFiles": "server/oauth/**"
     }
