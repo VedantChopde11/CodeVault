@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-const SITE_URL = "https://codevault.dev";
+const SITE_URL = "https://code-vault-tan.vercel.app";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
@@ -55,7 +55,7 @@ const sections = [
     body: [
       "Accepted solution source code is sent directly from the extension to GitHub through GitHub's API. CodeVault does not send source code to its own backend and does not use it for analytics, advertising, profiling, or model training.",
       "CodeVault reads only LeetCode's named CSRF cookie when LeetCode requires it as a request header. That value is never sent to GitHub or to the CodeVault OAuth service.",
-      "The OAuth service at codevault.dev performs the GitHub authorization exchange. OAuth state expires after five minutes, and the encrypted one-time token exchange expires after sixty seconds. The service also keeps short-lived rate-limit records to prevent abuse.",
+      "The OAuth service at code-vault-tan.vercel.app performs the GitHub authorization exchange. OAuth state expires after five minutes, and the encrypted one-time token exchange expires after sixty seconds. The service also keeps short-lived rate-limit records to prevent abuse.",
       "The website and OAuth service are hosted by Vercel, which may process standard request metadata such as an IP address. To prevent abuse, CodeVault hashes the request IP before storing a rate-limit counter in Upstash Redis for up to ten minutes. Upstash also stores only short-lived OAuth state and encrypted one-time exchange data needed to complete the connection flow.",
       "If the selected repository does not exist, CodeVault creates it as a public GitHub repository after the user explicitly confirms that choice. Accepted solution files committed there are publicly visible.",
     ],

@@ -5,8 +5,8 @@
 - Product name: `CodeVault - Solves to GitHub`
 - Category: `Developer Tools`
 - Language: `English`
-- Homepage: `https://codevault.dev/`
-- Privacy policy: `https://codevault.dev/privacy`
+- Homepage: `https://code-vault-tan.vercel.app/`
+- Privacy policy: `https://code-vault-tan.vercel.app/privacy`
 - Support: `https://github.com/TushalLohar/CodeVault/issues`
 
 Short description:
@@ -70,7 +70,7 @@ Displays a reconnect notification when GitHub authorization is no longer valid. 
 
 - `codeforces.com`, `leetcode.com`, `cses.fi`, `codechef.com`, and `geeksforgeeks.org`: detect accepted submissions and read the user's solution source and problem metadata.
 - `api.github.com`: verify the connected account and create or update files in the repository selected by the user.
-- `codevault.dev`: start and complete the short-lived GitHub OAuth exchange.
+- `code-vault-tan.vercel.app`: start and complete the short-lived GitHub OAuth exchange.
 
 ## Data Disclosure
 

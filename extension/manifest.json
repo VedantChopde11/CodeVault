@@ -3,7 +3,7 @@
   "name": "CodeVault - Solves to GitHub",
   "version": "1.0.0",
   "minimum_chrome_version": "112",
-  "homepage_url": "https://codevault.dev/",
+  "homepage_url": "https://code-vault-tan.vercel.app/",
   "description": "Automatically syncs accepted Codeforces, LeetCode, CSES, CodeChef and GeeksforGeeks solutions to GitHub.",
   "permissions": ["storage", "cookies", "scripting", "identity", "alarms", "notifications"],
   "host_permissions": [
@@ -15,7 +15,7 @@
     "https://*.geeksforgeeks.org/*",
     "https://geeksforgeeks.org/*",
     "https://api.github.com/*",
-    "http://localhost:3000/*"
+    "https://code-vault-tan.vercel.app/*"
   ],
   "background": {
     "service_worker": "background.js",

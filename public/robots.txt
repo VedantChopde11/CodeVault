@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://codevault.dev/sitemap.xml
+Sitemap: https://code-vault-tan.vercel.app/sitemap.xml

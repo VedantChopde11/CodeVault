@@ -63,7 +63,7 @@ For local development and Vercel deployment, you will need the following environ
 
 ### GitHub OAuth Setup
 1. Register a new OAuth application in your GitHub Developer Settings.
-2. Set the Authorization callback URL to match your `GITHUB_CALLBACK_URL` (e.g., `http://localhost:3000/api/oauth/github/callback`).
+2. Set the Authorization callback URL to match your `GITHUB_CALLBACK_URL` (e.g., `https://code-vault-tan.vercel.app/api/oauth/github/callback`).
 3. Copy the Client ID and Client Secret to your `.env` file.
 
 ### Browser Extension Setup

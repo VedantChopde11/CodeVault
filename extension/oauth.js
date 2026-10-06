@@ -1,7 +1,7 @@
 import * as store from "./storage.js";
 import * as gh from "./github.js";
 
-const OAUTH_API_BASE = "http://localhost:3000";
+const OAUTH_API_BASE = "https://code-vault-tan.vercel.app";
 const REQUEST_TIMEOUT = 30000;
 
 function randomBase64Url(bytes = 32) {

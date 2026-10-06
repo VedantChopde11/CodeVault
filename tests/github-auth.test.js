@@ -35,7 +35,7 @@ const extensionId = "mdceoheaomlhiijololigpfbpiplicda";
 Object.assign(process.env, {
   GITHUB_CLIENT_ID: "test-client-id",
   GITHUB_CLIENT_SECRET: "test-client-secret",
-  GITHUB_CALLBACK_URL: "https://codevault.dev/api/oauth/github/callback",
+  GITHUB_CALLBACK_URL: "https://code-vault-tan.vercel.app/api/oauth/github/callback",
   KV_REST_API_URL: "https://redis.test",
   KV_REST_API_TOKEN: "test-redis-token",
   TOKEN_ENCRYPTION_KEY: Buffer.alloc(32, 3).toString("base64"),

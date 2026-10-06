@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 const CHROME_WEB_STORE_URL =
   "https://chromewebstore.google.com/detail/codevault-solves-to-githu/caeobmhokccipmdinfcajpagikggollm";
-const SITE_URL = "https://codevault.dev";
+const SITE_URL = "https://code-vault-tan.vercel.app";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [

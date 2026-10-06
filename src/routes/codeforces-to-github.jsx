@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-const SITE_URL = "https://codevault.dev";
+const SITE_URL = "https://code-vault-tan.vercel.app";
 const CHROME_URL =
   "https://chromewebstore.google.com/detail/codevault-solves-to-githu/caeobmhokccipmdinfcajpagikggollm";
 export const Route = createFileRoute("/codeforces-to-github")({
